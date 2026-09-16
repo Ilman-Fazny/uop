@@ -34,6 +34,14 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
+    <!-- TOP TIME DISPLAY BAR (OPTIONAL) -->
+    <div class="bg-navy-950 text-slate-400 text-xs py-1.5 px-6 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span>Faculty of Engineering, University of Peradeniya</span>
+            <span id="currentTime" class="font-mono text-accent-gold">--:--:--</span>
+        </div>
+    </div>
+
     <!-- NAVIGATION BAR -->
     <header class="sticky top-0 z-50 bg-navy-900 text-white shadow-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
@@ -44,7 +52,6 @@
                     alt="English Teaching Unit Logo"
                     class="h-12 w-auto object-contain"
                 >
-            
                 <div>
                     <div class="font-semibold leading-tight text-sm">
                         English Teaching Unit
@@ -55,7 +62,6 @@
                 </div>
             </a>
 
-            
             <!-- Navigation Links -->
             <nav class="hidden md:flex items-center space-x-8 text-sm">
                 <a href="index.html" class="text-slate-300 hover:text-white transition">Home</a>
@@ -80,17 +86,17 @@
 
     <!-- CATEGORY TABS HEADER -->
     <div class="bg-white border-b border-slate-200 sticky top-20 z-40">
-        <div class="max-w-7xl mx-auto px-6 flex space-x-8 text-sm font-medium">
-            <button class="py-4 border-b-2 border-accent-gold text-navy-900 font-semibold flex items-center gap-2">
+        <div class="max-w-7xl mx-auto px-6 flex space-x-8 text-sm font-medium overflow-x-auto">
+            <button data-category="group" class="category-tab py-4 border-b-2 border-accent-gold text-navy-900 font-semibold flex items-center gap-2 whitespace-nowrap transition">
                 <span>🎭</span> Group Activities
             </button>
-            <button class="py-4 border-b-2 border-transparent text-slate-500 hover:text-navy-900 flex items-center gap-2 transition">
+            <button data-category="presentations" class="category-tab py-4 border-b-2 border-transparent text-slate-500 hover:text-navy-900 flex items-center gap-2 whitespace-nowrap transition">
                 <span>📊</span> Presentations
             </button>
-            <button class="py-4 border-b-2 border-transparent text-slate-500 hover:text-navy-900 flex items-center gap-2 transition">
+            <button data-category="documentaries" class="category-tab py-4 border-b-2 border-transparent text-slate-500 hover:text-navy-900 flex items-center gap-2 whitespace-nowrap transition">
                 <span>🎬</span> Documentaries
             </button>
-            <button class="py-4 border-b-2 border-transparent text-slate-500 hover:text-navy-900 flex items-center gap-2 transition">
+            <button data-category="art" class="category-tab py-4 border-b-2 border-transparent text-slate-500 hover:text-navy-900 flex items-center gap-2 whitespace-nowrap transition">
                 <span>🎨</span> Art & Explorer
             </button>
         </div>
@@ -100,19 +106,19 @@
     <section class="py-10 px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-5">
-                <div class="text-3xl mb-3">🎭</div>
-                <h2 class="text-2xl font-serif font-bold text-navy-900 mb-3">Group Activities</h2>
-                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                <div id="cat-emoji" class="text-3xl mb-3">🎭</div>
+                <h2 id="cat-title" class="text-2xl font-serif font-bold text-navy-900 mb-3">Group Activities</h2>
+                <p id="cat-desc" class="text-sm text-slate-600 leading-relaxed mb-6">
                     Group activities form the backbone of the ETU experience. Students engage in debates, role-plays, workshops, and community outreach programs that build teamwork, fluency, and cultural understanding through hands-on English communication.
                 </p>
                 <div class="flex gap-4">
-                    <span class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-md font-medium">7 Projects</span>
-                    <span class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-md font-medium">4 Groups</span>
-                    <span class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-md font-medium">0 Videos</span>
+                    <span id="cat-projects" class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-md font-medium">7 Projects</span>
+                    <span id="cat-groups" class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-md font-medium">4 Groups</span>
+                    <span id="cat-videos" class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-md font-medium">0 Videos</span>
                 </div>
             </div>
             <div class="lg:col-span-7">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="Group Activities" class="w-full h-72 object-cover rounded-xl border border-slate-200 shadow-sm">
+                <img id="cat-image" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" alt="Group Activities" class="w-full h-72 object-cover rounded-xl border border-slate-200 shadow-sm transition-all duration-300">
             </div>
         </div>
     </section>
@@ -143,31 +149,31 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/012</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/012</td>
                                 <td class="py-3 px-4 font-semibold">K.A. Perera</td>
                                 <td class="py-3 px-4">Civil Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-navy-900 text-white text-[10px] px-2 py-0.5 rounded">Group Leader</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/045</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/045</td>
                                 <td class="py-3 px-4">S.M. Fernando</td>
                                 <td class="py-3 px-4">Computer Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/089</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/089</td>
                                 <td class="py-3 px-4">T.D. Silva</td>
                                 <td class="py-3 px-4">Electrical & Electronic Eng.</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/112</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/112</td>
                                 <td class="py-3 px-4">R.N. Jayasinghe</td>
                                 <td class="py-3 px-4">Mechanical Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/150</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/150</td>
                                 <td class="py-3 px-4">M.H. Wickramasinghe</td>
                                 <td class="py-3 px-4">Chemical & Process Eng.</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
@@ -199,25 +205,25 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/023</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/023</td>
                                 <td class="py-3 px-4 font-semibold">A.B. Bandara</td>
                                 <td class="py-3 px-4">Computer Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-navy-900 text-white text-[10px] px-2 py-0.5 rounded">Group Leader</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/067</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/067</td>
                                 <td class="py-3 px-4">C.L. Senanayake</td>
                                 <td class="py-3 px-4">Civil Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/105</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/105</td>
                                 <td class="py-3 px-4">D.M. Gunawardena</td>
                                 <td class="py-3 px-4">Manufacturing Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/141</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/141</td>
                                 <td class="py-3 px-4">P.K. Ranasinghe</td>
                                 <td class="py-3 px-4">Electrical & Electronic Eng.</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
@@ -249,25 +255,25 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/031</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/031</td>
                                 <td class="py-3 px-4 font-semibold">G.S. Jayawardena</td>
                                 <td class="py-3 px-4">Mechanical Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-navy-900 text-white text-[10px] px-2 py-0.5 rounded">Group Leader</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/078</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/078</td>
                                 <td class="py-3 px-4">N.P. Rathnayake</td>
                                 <td class="py-3 px-4">Computer Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/118</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/118</td>
                                 <td class="py-3 px-4">H.M. Herath</td>
                                 <td class="py-3 px-4">Civil Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/162</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/162</td>
                                 <td class="py-3 px-4">V.K. Abeysekara</td>
                                 <td class="py-3 px-4">Chemical & Process Eng.</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
@@ -299,25 +305,25 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/019</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/019</td>
                                 <td class="py-3 px-4 font-semibold">W.M. Liyanage</td>
                                 <td class="py-3 px-4">Electrical & Electronic Eng.</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-navy-900 text-white text-[10px] px-2 py-0.5 rounded">Group Leader</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/054</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/054</td>
                                 <td class="py-3 px-4">J.K. Fonseka</td>
                                 <td class="py-3 px-4">Civil Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/093</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/093</td>
                                 <td class="py-3 px-4">U.H. Disanayaka</td>
                                 <td class="py-3 px-4">Computer Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
                             </tr>
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/20/137</td>
+                                <td class="py-3 px-4 font-mono font-medium text-slate-900">E/25/137</td>
                                 <td class="py-3 px-4">K.G. Rajapaksha</td>
                                 <td class="py-3 px-4">Mechanical Engineering</td>
                                 <td class="py-3 px-4 text-right"><span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">Member</span></td>
@@ -351,9 +357,9 @@
             <div>
                 <h4 class="font-bold text-sm text-slate-200 mb-4">Pages</h4>
                 <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#home" class="hover:text-accent-gold">Home</a></li>
-                    <li><a href="#groups" class="hover:text-accent-gold">Groups</a></li>
-                    <li><a href="#categories" class="hover:text-accent-gold">Categories</a></li>
+                    <li><a href="index.html" class="hover:text-accent-gold">Home</a></li>
+                    <li><a href="groups.html" class="hover:text-accent-gold">Groups</a></li>
+                    <li><a href="categories.html" class="hover:text-accent-gold">Categories</a></li>
                     <li><a href="#gallery" class="hover:text-accent-gold">Gallery</a></li>
                 </ul>
             </div>
@@ -375,30 +381,96 @@
         </div>
     </footer>
 
-  <script>
-    document.querySelectorAll('.tab-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        // 1. Remove active state from all tabs
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-          btn.classList.remove('border-accent-gold', 'text-navy-900', 'font-semibold');
-          btn.classList.add('border-transparent', 'text-slate-500');
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+      // 1. Live Time Display Function
+      function showTime() {
+        const timeElement = document.getElementById('currentTime');
+        if (timeElement) {
+          timeElement.textContent = new Date().toUTCString();
+        }
+      }
+      showTime();
+      setInterval(showTime, 1000);
+
+      // 2. Category Dynamic Switcher Data
+      const categoryData = {
+        group: {
+          title: "Group Activities",
+          emoji: "🎭",
+          description: "Group activities form the backbone of the ETU experience. Students engage in debates, role-plays, workshops, and community outreach programs that build teamwork, fluency, and cultural understanding through hands-on English communication.",
+          projects: "7 Projects",
+          groups: "4 Groups",
+          videos: "0 Videos",
+          image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80"
+        },
+        presentations: {
+          title: "Presentations",
+          emoji: "📊",
+          description: "From technical research presentations to creative storytelling sessions, students develop their public speaking and visual communication skills. Each presentation is crafted to bridge the gap between engineering knowledge and effective communication.",
+          projects: "5 Projects",
+          groups: "4 Groups",
+          videos: "5 Videos",
+          image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80"
+        },
+        documentaries: {
+          title: "Documentaries",
+          emoji: "🎬",
+          description: "Student-produced short documentaries that explore themes ranging from campus life and engineering innovation to social issues and Sri Lankan culture. These films are crafted entirely in English, showcasing narrative, interview, and production skills.",
+          projects: "5 Projects",
+          groups: "4 Groups",
+          videos: "5 Videos",
+          image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1000&q=80"
+        },
+        art: {
+          title: "Art & Explorer",
+          emoji: "🎨",
+          description: "The Art & Explorer category celebrates creative expression in all its forms — from digital illustrations and mixed-media paintings to photography series and interactive installations. Students use art as a language to explore ideas beyond words.",
+          projects: "6 Projects",
+          groups: "4 Groups",
+          videos: "0 Videos",
+          image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1000&q=80"
+        }
+      };
+
+      // 3. Category Tab Click Handlers
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.category-tab');
+        const catEmoji = document.getElementById('cat-emoji');
+        const catTitle = document.getElementById('cat-title');
+        const catDesc = document.getElementById('cat-desc');
+        const catProjects = document.getElementById('cat-projects');
+        const catGroups = document.getElementById('cat-groups');
+        const catVideos = document.getElementById('cat-videos');
+        const catImage = document.getElementById('cat-image');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const key = tab.getAttribute('data-category');
+            const data = categoryData[key];
+
+            if (!data) return;
+
+            // Highlight Active Tab
+            tabs.forEach(t => {
+              t.classList.remove('border-accent-gold', 'text-navy-900', 'font-semibold');
+              t.classList.add('border-transparent', 'text-slate-500');
+            });
+            tab.classList.add('border-accent-gold', 'text-navy-900', 'font-semibold');
+            tab.classList.remove('border-transparent', 'text-slate-500');
+
+            // Update Dynamic Content
+            catEmoji.textContent = data.emoji;
+            catTitle.textContent = data.title;
+            catDesc.textContent = data.description;
+            catProjects.textContent = data.projects;
+            catGroups.textContent = data.groups;
+            catVideos.textContent = data.videos;
+            catImage.src = data.image;
+            catImage.alt = data.title;
+          });
         });
-
-        // 2. Add active state to clicked tab
-        button.classList.add('border-accent-gold', 'text-navy-900', 'font-semibold');
-        button.classList.remove('border-transparent', 'text-slate-500');
-
-        // 3. Hide all category sections
-        document.querySelectorAll('.category-content').forEach(section => {
-          section.classList.add('hidden');
-        });
-
-        // 4. Show target category section
-        const targetId = button.getAttribute('data-target');
-        document.getElementById(targetId).classList.remove('hidden');
       });
-    });
-  </script>
-
+    </script>
 </body>
 </html>
