@@ -481,9 +481,9 @@ const SUPABASE_URL = 'https://dbfnjoejntbxdnzixpls.supabase.co/rest/v1/';
 const SUPABASE_ANON_KEY = 'sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk';
 
 // Initialize the client
-const supabase = window.supabase.createClient(https://dbfnjoejntbxdnzixpls.supabase.co/rest/v1/, sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk);
-
-    
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+console.log("Supabase connected successfully!", supabase);
+        
     </script>
 </body>
 </html>
