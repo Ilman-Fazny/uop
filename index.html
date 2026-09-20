@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <!-- Supabase JS Client CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,12 +62,28 @@
 
             <!-- Links -->
             <nav class="hidden md:flex items-center space-x-8 text-sm">
-                <a href="#home" class="bg-navy-800 text-accent-gold px-4 py-2 rounded-md font-medium">Home</a>
+                <a href="index.html" class="bg-navy-800 text-accent-gold px-4 py-2 rounded-md font-medium">Home</a>
                 <a href="groups.html" class="text-slate-300 hover:text-white transition">Groups</a>
                 <a href="categories.html" class="text-slate-300 hover:text-white transition">Categories</a>
-                <a href="#gallery" class="text-slate-300 hover:text-white transition">Gallery</a>
+                <a href="#work" class="text-slate-300 hover:text-white transition">Gallery</a>
                 <a href="about.html" class="text-slate-300 hover:text-white transition">About</a>
             </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-950 px-6 py-4 border-t border-navy-800 space-y-3">
+            <a href="index.html" class="block text-accent-gold font-medium py-1">Home</a>
+            <a href="groups.html" class="block text-slate-300 hover:text-white py-1">Groups</a>
+            <a href="categories.html" class="block text-slate-300 hover:text-white py-1">Categories</a>
+            <a href="#work" class="block text-slate-300 hover:text-white py-1">Gallery</a>
+            <a href="about.html" class="block text-slate-300 hover:text-white py-1">About</a>
         </div>
     </header>
 
@@ -161,7 +178,7 @@
                 <p class="text-slate-600 mb-6 leading-relaxed">
                     Browse student group projects organized by cohort (AB01–AB04) and category. Whether you're a student, educator, or visitor, we invite you to explore the creativity and talent of our engineering community.
                 </p>
-                <a href="#" class="inline-flex items-center text-navy-900 font-semibold hover:text-accent-gold transition">
+                <a href="about.html" class="inline-flex items-center text-navy-900 font-semibold hover:text-accent-gold transition">
                     Learn more about us <span class="ml-2">→</span>
                 </a>
             </div>
@@ -184,85 +201,79 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-accent-gold mb-1 block">STUDENT GROUPS</span>
                     <h2 class="text-3xl font-serif font-bold text-navy-900">Meet Our Groups</h2>
                 </div>
-                <a href="#" class="text-sm font-semibold text-navy-900 hover:text-accent-gold transition">View all groups →</a>
+                <a href="groups.html" class="text-sm font-semibold text-navy-900 hover:text-accent-gold transition">View all groups →</a>
             </div>
 
             <!-- 4 Column Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Group AB01 -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab01" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB01</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-lg mb-2">Group AB01</h3>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2 group-hover:text-accent-gold transition">Group AB01</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Pioneers in collaborative storytelling and visual media.</p>
                         <div class="text-xs text-slate-400 flex justify-between pt-3 border-t border-slate-100">
-                            <span>0 projects</span>
-                            <span>0 students</span>
+                            <span>4 projects</span>
+                            <span>5 students</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Group AB02 -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab02" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB02</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-lg mb-2">Group AB02</h3>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2 group-hover:text-accent-gold transition">Group AB02</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Exploring documentary arts and engineering narratives.</p>
                         <div class="text-xs text-slate-400 flex justify-between pt-3 border-t border-slate-100">
-                            <span>0 projects</span>
-                            <span>0 students</span>
+                            <span>4 projects</span>
+                            <span>5 students</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Group AB03 -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab03" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB03</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-lg mb-2">Group AB03</h3>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2 group-hover:text-accent-gold transition">Group AB03</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Creative presentations bridging language and technology.</p>
                         <div class="text-xs text-slate-400 flex justify-between pt-3 border-t border-slate-100">
-                            <span>0 projects</span>
-                            <span>0 students</span>
+                            <span>4 projects</span>
+                            <span>5 students</span>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Group AB04 -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab04" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB04</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-lg mb-2">Group AB04</h3>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2 group-hover:text-accent-gold transition">Group AB04</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Artistic expression through multimedia and gallery work.</p>
                         <div class="text-xs text-slate-400 flex justify-between pt-3 border-t border-slate-100">
-                            <span>0 projects</span>
-                            <span>0 students</span>
+                            <span>4 projects</span>
+                            <span>5 students</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- This is the empty container with an ID -->
-<div id="latest-projects-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <!-- JavaScript will automatically insert your project cards here -->
-</div>
-    
-        <!-- LATEST STUDENT WORK / FEATURED PROJECTS -->
-        <!-- LATEST STUDENT WORK / FEATURED PROJECTS -->
+    <!-- LATEST STUDENT WORK / FEATURED PROJECTS -->
     <section id="work" class="py-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-end mb-10">
@@ -270,12 +281,12 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-accent-gold mb-1 block">FEATURED PROJECTS</span>
                     <h2 class="text-3xl font-serif font-bold text-navy-900">Latest Student Work</h2>
                 </div>
-                <a href="#" class="text-sm font-semibold text-navy-900 hover:text-accent-gold transition">View all projects →</a>
+                <a href="groups.html" class="text-sm font-semibold text-navy-900 hover:text-accent-gold transition">View all projects →</a>
             </div>
     
-            <!-- 3 Column Work Cards (Dynamically loaded from Supabase) -->
+            <!-- 3 Column Work Cards (Dynamically loaded) -->
             <div id="latest-projects-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- JavaScript will automatically inject your cards here -->
+                <div class="col-span-full py-8 text-center text-slate-400">Loading latest student projects...</div>
             </div>
         </div>
     </section>
@@ -283,59 +294,58 @@
     <!-- JavaScript to load dynamic data into this section -->
     <script>
     async function loadLatestProjects() {
-      // Fetch up to 3 latest projects from Supabase, including the group name
-      const { data: projects, error } = await supabase
-        .from('projects')
-        .select('*, groups(name, slug)')
-        .order('created_at', { ascending: false })
-        .limit(3);
-    
       const container = document.getElementById('latest-projects-container');
-      
-      if (error) {
-        console.error('Error fetching projects:', error);
-        container.innerHTML = '<p class="text-red-500">Failed to load projects.</p>';
-        return;
+      if (!container) return;
+
+      try {
+        const projects = await window.ETUDataService.getLatestProjects(3);
+
+        if (!projects || projects.length === 0) {
+          container.innerHTML = '<p class="col-span-full text-center text-slate-500 py-8">No projects uploaded yet.</p>';
+          return;
+        }
+
+        container.innerHTML = '';
+        projects.forEach(project => {
+          const imageUrl = project.imageUrl || project.image_url || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80';
+          const groupName = project.groupName || (project.groups ? project.groups.name : 'Group');
+          const groupSlug = project.groupSlug || (project.groups ? project.groups.slug : 'ab01');
+
+          container.innerHTML += `
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="relative h-48">
+                        <img src="${imageUrl}" alt="${project.title}" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2 py-0.5 rounded shadow-sm">${groupName}</span>
+                        ${project.icon ? `<span class="absolute top-3 right-3 bg-navy-900/80 text-white text-xs px-2 py-0.5 rounded shadow-sm">${project.icon}</span>` : ''}
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-1 block">${project.category}</span>
+                        <h3 class="font-bold text-navy-900 text-lg mb-2">${project.title}</h3>
+                        <p class="text-xs text-slate-500 mb-4 leading-relaxed line-clamp-3">${project.description || 'Explore the details of this project.'}</p>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <a href="group.html?group=${groupSlug}" class="text-xs font-bold text-accent-gold flex items-center hover:underline">
+                        View in ${groupName} →
+                    </a>
+                    ${project.time ? `<span class="text-[10px] font-mono text-slate-400">${project.time}</span>` : ''}
+                </div>
+            </div>
+          `;
+        });
+      } catch (err) {
+        console.error('Error loading projects:', err);
+        container.innerHTML = '<p class="col-span-full text-center text-red-500 py-8">Failed to load projects.</p>';
       }
-    
-      // If there are no projects in the database yet, show a fallback message
-      if (!projects || projects.length === 0) {
-        container.innerHTML = '<p class="text-slate-500">No projects uploaded yet.</p>';
-        return;
-      }
-    
-      container.innerHTML = ''; // Clear container
-    
-      // Loop through each project fetched from Supabase and build its HTML card matching your design
-      projects.forEach(project => {
-        // Fallback image if none was uploaded
-        const imageUrl = project.image_url || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80';
-        
-        container.innerHTML += `
-          <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
-              <div>
-                  <div class="relative h-48">
-                      <img src="${imageUrl}" class="w-full h-full object-cover">
-                      <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2 py-0.5 rounded">${project.groups ? project.groups.name : 'Group'}</span>
-                  </div>
-                  <div class="p-6">
-                      <span class="text-xs text-blue-600 font-semibold uppercase tracking-wider mb-1 block">${project.category}</span>
-                      <h3 class="font-bold text-navy-900 text-lg mb-2">${project.title}</h3>
-                      <p class="text-xs text-slate-500 mb-4 leading-relaxed">${project.description || 'Explore the details of this project.'}</p>
-                  </div>
-              </div>
-              <div class="px-6 pb-6">
-                  <a href="group-detail.html?group=${project.groups ? project.groups.slug : ''}" class="text-xs font-bold text-accent-gold flex items-center hover:underline">
-                      View project details →
-                  </a>
-              </div>
-          </div>
-        `;
-      });
     }
     
-    // Run this function when the page loads
-    loadLatestProjects();
+    // Run after DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadLatestProjects);
+    } else {
+      loadLatestProjects();
+    }
     </script>
 
     <!-- OUR MISSION SECTION -->
@@ -439,10 +449,10 @@
             <div>
                 <h4 class="font-bold text-sm text-slate-200 mb-4">Pages</h4>
                 <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#home" class="hover:text-accent-gold">Home</a></li>
-                    <li><a href="#groups" class="hover:text-accent-gold">Groups</a></li>
-                    <li><a href="#categories" class="hover:text-accent-gold">Categories</a></li>
-                    <li><a href="#gallery" class="hover:text-accent-gold">Gallery</a></li>
+                    <li><a href="index.html" class="hover:text-accent-gold">Home</a></li>
+                    <li><a href="groups.html" class="hover:text-accent-gold">Groups</a></li>
+                    <li><a href="categories.html" class="hover:text-accent-gold">Categories</a></li>
+                    <li><a href="#work" class="hover:text-accent-gold">Gallery</a></li>
                 </ul>
             </div>
 
@@ -450,10 +460,10 @@
             <div>
                 <h4 class="font-bold text-sm text-slate-200 mb-4">Student Groups</h4>
                 <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#" class="hover:text-accent-gold">Group AB01</a></li>
-                    <li><a href="#" class="hover:text-accent-gold">Group AB02</a></li>
-                    <li><a href="#" class="hover:text-accent-gold">Group AB03</a></li>
-                    <li><a href="#" class="hover:text-accent-gold">Group AB04</a></li>
+                    <li><a href="group.html?group=ab01" class="hover:text-accent-gold">Group AB01</a></li>
+                    <li><a href="group.html?group=ab02" class="hover:text-accent-gold">Group AB02</a></li>
+                    <li><a href="group.html?group=ab03" class="hover:text-accent-gold">Group AB03</a></li>
+                    <li><a href="group.html?group=ab04" class="hover:text-accent-gold">Group AB04</a></li>
                 </ul>
             </div>
         </div>
@@ -463,14 +473,7 @@
         </div>
     </footer>
 
-    <script>
-        // Replace these with your actual Supabase credentials from Phase 3
-const SUPABASE_URL = 'https://dbfnjoejntbxdnzixpls.supabase.co/rest/v1/';
-const SUPABASE_ANON_KEY = 'sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk';
-
-// Initialize the client
-const supabase = window.supabase.createClient(https://dbfnjoejntbxdnzixpls.supabase.co/rest/v1/, sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk);
-    </script>
+    <script src="nav.js"></script>
 
 </body>
 </html>
