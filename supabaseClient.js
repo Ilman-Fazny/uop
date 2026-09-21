@@ -6,10 +6,10 @@
 const SUPABASE_URL = 'https://dbfnjoejntbxdnzixpls.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk';
 
-let supabase = null;
-if (typeof window !== 'undefined' && window.supabase) {
+let _supabaseClient = null;
+if (typeof window !== 'undefined' && window.supabase && typeof window.supabase.createClient === 'function') {
   try {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    _supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   } catch (err) {
     console.warn('Could not initialize Supabase client:', err);
   }
@@ -296,13 +296,13 @@ const FALLBACK_DATA = {
 // Data service methods exposed globally
 window.ETUDataService = {
   getSupabaseClient() {
-    return supabase;
+    return _supabaseClient;
   },
 
   async getGroups() {
-    if (supabase) {
+    if (_supabaseClient) {
       try {
-        const { data, error } = await supabase.from('groups').select('*').order('name');
+        const { data, error } = await _supabaseClient.from('groups').select('*').order('name');
         if (!error && data && data.length > 0) {
           return data.map(g => {
             const fb = FALLBACK_DATA.groups.find(f => f.slug.toLowerCase() === g.slug.toLowerCase());
@@ -331,9 +331,9 @@ window.ETUDataService = {
     const groupProjects = await this.getProjectsByGroup(group.slug);
 
     let students = fallbackGroup.students || [];
-    if (supabase && group.id) {
+    if (_supabaseClient && group.id) {
       try {
-        const { data: memberRows, error: memberErr } = await supabase
+        const { data: memberRows, error: memberErr } = await _supabaseClient
           .from('members')
           .select('*')
           .eq('group_id', group.id);
@@ -363,9 +363,9 @@ window.ETUDataService = {
 
   async getProjectsByGroup(slug) {
     const cleanSlug = (slug || 'ab01').toLowerCase();
-    if (supabase) {
+    if (_supabaseClient) {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await _supabaseClient
           .from('projects')
           .select('*, groups(name, slug)')
           .order('created_at', { ascending: false });
@@ -391,9 +391,9 @@ window.ETUDataService = {
   },
 
   async getAllProjects() {
-    if (supabase) {
+    if (_supabaseClient) {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await _supabaseClient
           .from('projects')
           .select('*, groups(name, slug)')
           .order('created_at', { ascending: false });
