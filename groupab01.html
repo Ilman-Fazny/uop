@@ -251,6 +251,166 @@
         </div>
     </section>
 
+    <!-- GALLERY / IMAGE GRID SECTION -->
+    <section id="gallery" class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Section Title & Counter -->
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-navy-900">Photo Gallery</h3>
+            <div class="text-xs font-semibold text-slate-400">
+                Showing <span class="text-slate-700">18</span> of <span class="text-slate-700">18</span> images
+            </div>
+        </div>
+
+        <!-- GALLERY / IMAGE GRID SECTION -->
+<section id="gallery" class="max-w-7xl mx-auto px-6 py-10 border-t border-slate-200 mt-10">
+    <!-- Top Bar: Title & Counter -->
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h3 class="text-lg font-bold text-navy-900">Media Gallery</h3>
+            <p class="text-xs text-slate-500">Visual highlights and event moments from Group AB01</p>
+        </div>
+        <div class="text-xs text-slate-500 font-medium">
+            Showing <span class="font-bold text-slate-800">8</span> of <span class="font-bold text-slate-800">8</span> images
+        </div>
+    </div>
+
+    <!-- Masonry Grid Container (Unfiltered) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="gallery-grid">
+        
+        <!-- Column 1 -->
+        <div class="flex flex-col gap-4">
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '🎭 Group Activities', 'Engineering Language Fair 2024 - Opening Stage Event')">
+                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Language Fair" class="w-full h-52 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">🎭 Group Activity</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Language Fair Stage Event</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '📊 Presentations', 'Team Discussion on Structural Integrity Presentation')">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Team Discussion" class="w-full h-72 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">📊 Presentation</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Presentation Workshop</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="flex flex-col gap-4">
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '🎬 Documentaries', 'Behind the Scenes - Campus Life Documentary Shoot')">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Documentary Filming" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">🎬 Documentary</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Documentary Filming</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '🎨 Art & Explorer', 'Structures & Strokes - Artwork Preparation')">
+                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80" alt="Art Session" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">🎨 Art & Explorer</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Artwork Preparation</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="flex flex-col gap-4">
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '🎭 Group Activities', 'Faculty Auditorium Gathering - UoP')">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="Auditorium Event" class="w-full h-52 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">🎭 Group Activity</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Faculty Auditorium Event</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '📊 Presentations', 'Field Observations Presentation')">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Field Study" class="w-full h-60 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">📊 Presentation</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Field Observations Study</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="flex flex-col gap-4">
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '🎬 Documentaries', 'Environmental Studies Focus Shot')">
+                <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80" alt="Nature Study" class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">🎬 Documentary</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Documentary B-Roll Shot</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+
+            <div class="group relative cursor-pointer overflow-hidden rounded-2xl shadow-sm bg-slate-100" 
+                 onclick="openLightbox('https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=2000&q=90', 'Group AB01', '🎨 Art & Explorer', 'Media & Newsletter Visuals')">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80" alt="Newsletter Print" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                
+                <div class="absolute top-3 left-3 flex gap-1 z-10">
+                    <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow">AB01</span>
+                    <span class="bg-navy-900/90 text-white text-[10px] px-2 py-0.5 rounded shadow">🎨 Art & Explorer</span>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-3 text-white">
+                    <span class="text-xs font-semibold">Media & Visual Publications</span>
+                    <span class="text-[10px] text-slate-300">Click to view full size 🔍</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
     <!-- STUDENT LIST SECTION (ST-LIST) -->
     <section class="max-w-7xl mx-auto px-6 pt-10 pb-6">
         <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
@@ -384,6 +544,39 @@
 
             updateStudentCount();
         });
+
+        // --- 3. LIGHTBOX MODAL FUNCTIONS ---
+    function openLightbox(fullSrc, groupName, activityType, captionText) {
+        const modal = document.getElementById('lightbox-modal');
+        const modalImg = document.getElementById('lightbox-img');
+        const groupEl = document.getElementById('lightbox-group');
+        const activityEl = document.getElementById('lightbox-activity');
+        const captionEl = document.getElementById('lightbox-caption');
+        const origBtn = document.getElementById('lightbox-original-btn');
+
+        modalImg.src = fullSrc;
+        groupEl.textContent = groupName || 'Group AB01';
+        activityEl.textContent = activityType || 'Activity';
+        captionEl.textContent = captionText || '';
+        if (origBtn) origBtn.href = fullSrc;
+
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById('lightbox-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.getElementById('lightbox-modal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'lightbox-modal') closeLightbox();
+    });
     </script>
 </body>
 </html>
