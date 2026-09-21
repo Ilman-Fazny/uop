@@ -37,6 +37,11 @@
             }
         }
     </script>
+    <style>
+        .editor-only { display: none !important; }
+        body.is-editor-mode .editor-only { display: flex !important; }
+        body.is-editor-mode .editor-block { display: block !important; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
@@ -61,21 +66,29 @@
                 </div>
             </a>
             
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm">
-                <a href="index.html" class="text-slate-300 hover:text-white transition">Home</a>
-                <a href="groups.html" class="bg-navy-800 text-accent-gold px-4 py-2 rounded-md font-medium">Groups</a>
-                <a href="categories.html" class="text-slate-300 hover:text-white transition">Categories</a>
-                <a href="#projects-grid" class="text-slate-300 hover:text-white transition">Gallery</a>
-                <a href="about.html" class="text-slate-300 hover:text-white transition">About</a>
-            </nav>
+            <!-- Navigation Links & Editor Toggle -->
+            <div class="flex items-center space-x-4 sm:space-x-8">
+                <nav class="hidden md:flex items-center space-x-8 text-sm">
+                    <a href="index.html" class="text-slate-300 hover:text-white transition">Home</a>
+                    <a href="groups.html" class="bg-navy-800 text-accent-gold px-4 py-2 rounded-md font-medium">Groups</a>
+                    <a href="categories.html" class="text-slate-300 hover:text-white transition">Categories</a>
+                    <a href="#projects-grid" class="text-slate-300 hover:text-white transition">Gallery</a>
+                    <a href="about.html" class="text-slate-300 hover:text-white transition">About</a>
+                </nav>
 
-            <!-- Mobile Menu Toggle Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle navigation">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
+                <!-- Editor Mode Toggle Button -->
+                <button id="editor-mode-toggle" onclick="toggleEditorMode()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-navy-800 hover:bg-navy-950 text-slate-300 hover:text-accent-gold border border-slate-700 transition" title="Toggle edit controls for groups, students and projects">
+                    <span id="editor-mode-icon">✏️</span>
+                    <span id="editor-mode-label">Edit Mode</span>
+                </button>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle navigation">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <!-- Mobile Navigation Menu -->
@@ -87,6 +100,18 @@
             <a href="about.html" class="block text-slate-300 hover:text-white py-1">About</a>
         </div>
     </header>
+
+    <!-- EDITOR MODE ALERT BANNER -->
+    <div id="editor-banner" class="hidden bg-amber-500/15 border-b border-amber-500/30 px-6 py-2.5 text-xs text-amber-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-sm">🔧</span>
+                <span class="font-medium text-amber-200">Editor Mode Active:</span>
+                <span>You can create new student groups, edit group info, and manage student rosters & projects.</span>
+            </div>
+            <button onclick="toggleEditorMode()" class="underline hover:text-white font-semibold">Exit Editor</button>
+        </div>
+    </div>
 
     <!-- HERO / BANNER SECTION -->
     <section class="bg-navy-900 text-white py-14 px-6 border-b border-navy-800">
@@ -104,8 +129,8 @@
         <div class="max-w-7xl mx-auto">
             <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6 block">SELECT A GROUP</span>
 
-            <!-- 4 Column Cohort Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Cohort Cards Grid (Populated dynamically from ETUDataService) -->
+            <div id="groups-cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Group AB01 Card -->
                 <a href="group.html?group=ab01" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
@@ -337,8 +362,87 @@
         </div>
     </footer>
 
+    <!-- ADD NEW GROUP MODAL -->
+    <div id="modal-add-group" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 relative">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                <h3 class="text-lg font-serif font-bold text-navy-900">Create New Student Group</h3>
+                <button onclick="closeAddGroupModal()" class="text-slate-400 hover:text-slate-600 text-xl leading-none">&times;</button>
+            </div>
+            <form id="form-add-group" onsubmit="handleCreateGroup(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Group Name *</label>
+                    <input type="text" id="input-newgroup-name" required placeholder="e.g. Group AB05" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-accent-gold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Group Slug * (URL identifier)</label>
+                    <input type="text" id="input-newgroup-slug" required placeholder="e.g. ab05" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-accent-gold font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Tagline</label>
+                    <input type="text" id="input-newgroup-tagline" placeholder="e.g. Robotics, AI and Technical Communication" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-accent-gold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Description</label>
+                    <textarea id="input-newgroup-desc" rows="3" placeholder="Brief cohort background or focus areas..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-accent-gold"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Cover Image URL</label>
+                    <input type="url" id="input-newgroup-cover" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:border-accent-gold">
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="closeAddGroupModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900">Cancel</button>
+                    <button type="submit" id="btn-create-group" class="bg-navy-900 hover:bg-navy-950 text-accent-gold font-semibold text-xs px-5 py-2.5 rounded-lg shadow-sm transition">Create Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- DYNAMIC FILTERING & PROJECT DATA SCRIPT -->
     <script>
+        let isEditorMode = false;
+
+        // --- EDITOR MODE MANAGEMENT ---
+        function initEditorMode() {
+            try {
+                isEditorMode = localStorage.getItem('ETU_EDITOR_MODE') === 'true';
+            } catch (e) {
+                isEditorMode = false;
+            }
+            updateEditorUI();
+        }
+
+        function toggleEditorMode() {
+            isEditorMode = !isEditorMode;
+            try {
+                localStorage.setItem('ETU_EDITOR_MODE', isEditorMode ? 'true' : 'false');
+            } catch (e) {}
+            updateEditorUI();
+            // Re-render group cards so the "+ Add New Group" card appears/disappears
+            if (currentGroupsList.length > 0) {
+                renderGroupCards(currentGroupsList);
+            }
+        }
+
+        function updateEditorUI() {
+            const body = document.body;
+            const banner = document.getElementById('editor-banner');
+            const icon = document.getElementById('editor-mode-icon');
+            const label = document.getElementById('editor-mode-label');
+
+            if (isEditorMode) {
+                body.classList.add('is-editor-mode');
+                if (banner) banner.classList.remove('hidden');
+                if (icon) icon.textContent = '🔒';
+                if (label) label.textContent = 'Exit Editor';
+            } else {
+                body.classList.remove('is-editor-mode');
+                if (banner) banner.classList.add('hidden');
+                if (icon) icon.textContent = '✏️';
+                if (label) label.textContent = 'Edit Mode';
+            }
+        }
+
         const initialProjectsData = [
             // AB01 Projects
             { group: 'AB01', groupSlug: 'ab01', category: 'Group Activities', filterCategory: 'group-activities', icon: '🎭', title: 'Engineering Language Fair 2024', desc: 'A vibrant group activity showcasing language skills through engineering themes and interactive stalls.', img: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80', isVideo: false },
@@ -366,6 +470,93 @@
         ];
 
         let allProjectsList = [...initialProjectsData];
+        let currentGroupsList = [];
+
+        // RENDER GROUP CARDS
+        function renderGroupCards(groups) {
+            const container = document.getElementById('groups-cards-container');
+            if (!container) return;
+
+            let html = groups.map(grp => {
+                const groupSlug = (grp.slug || '').toLowerCase();
+                const groupBadge = groupSlug.toUpperCase();
+                const count = allProjectsList.filter(p => (p.groupSlug || '').toLowerCase() === groupSlug).length;
+                const cover = grp.cardImage || grp.coverImage || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80';
+                const tagline = grp.tagline || 'Student cohort at Faculty of Engineering.';
+
+                return `
+                    <a href="group.html?group=${groupSlug}" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="relative h-44">
+                            <img src="${cover}" alt="${grp.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded shadow">${groupBadge}</span>
+                            <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm shadow">${count} project${count !== 1 ? 's' : ''}</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-navy-900 text-base mb-1 group-hover:text-accent-gold transition">${grp.name}</h3>
+                            <p class="text-xs text-slate-500 mb-4 line-clamp-2">${tagline}</p>
+                            <span class="text-xs font-semibold text-accent-gold group-hover:underline">View projects →</span>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+
+            if (isEditorMode) {
+                html += `
+                    <button type="button" onclick="openAddGroupModal()" class="flex flex-col items-center justify-center border-2 border-dashed border-accent-gold/60 hover:border-accent-gold bg-amber-500/5 hover:bg-amber-500/10 rounded-xl p-8 text-center transition group min-h-[260px]">
+                        <div class="w-12 h-12 rounded-full bg-accent-gold/20 flex items-center justify-center text-accent-gold text-2xl font-bold mb-3 group-hover:scale-110 transition">
+                            +
+                        </div>
+                        <span class="font-bold text-navy-900 text-sm mb-1">Add New Group</span>
+                        <span class="text-xs text-slate-500">Create a new student cohort</span>
+                    </button>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // CREATE GROUP MODAL ACTIONS
+        function openAddGroupModal() {
+            document.getElementById('form-add-group').reset();
+            document.getElementById('modal-add-group').classList.remove('hidden');
+        }
+
+        function closeAddGroupModal() {
+            document.getElementById('modal-add-group').classList.add('hidden');
+        }
+
+        async function handleCreateGroup(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-create-group');
+            btn.disabled = true;
+            btn.textContent = 'Creating...';
+
+            const name = document.getElementById('input-newgroup-name').value;
+            const slug = document.getElementById('input-newgroup-slug').value;
+            const tagline = document.getElementById('input-newgroup-tagline').value;
+            const description = document.getElementById('input-newgroup-desc').value;
+            const coverImage = document.getElementById('input-newgroup-cover').value;
+
+            try {
+                const newGrp = await window.ETUDataService.createGroup({
+                    name,
+                    slug,
+                    tagline,
+                    description,
+                    coverImage
+                });
+
+                currentGroupsList.push(newGrp);
+                renderGroupCards(currentGroupsList);
+                closeAddGroupModal();
+                alert(`Group "${name}" created successfully! Click its card to open its template and add students/projects.`);
+            } catch (err) {
+                alert('Could not create group: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Create Group';
+            }
+        }
 
         function renderProjects(filtered) {
             const grid = document.getElementById('projects-grid');
@@ -431,7 +622,6 @@
                 if (counterText) counterText.innerText = `${allProjectsList.length} projects`;
                 if (clearBtn) clearBtn.classList.add('hidden');
             } else {
-                // Support both exact name ("Group Activities") or slug ("group-activities")
                 const slugified = cat.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
                 const activeTab = document.getElementById(`tab-${slugified}`) || document.getElementById(`tab-${cat}`);
                 if (activeTab) {
@@ -454,20 +644,36 @@
         const initialCategory = urlParams.get('category') || 'all';
         filterCategory(initialCategory);
 
-        // In the background, enhance with remote Supabase data if available
+        // Enhance with data service on DOMContentLoaded
         async function fetchRemoteEnhancements() {
+            initEditorMode();
             if (!window.ETUDataService) return;
             try {
+                const groups = await window.ETUDataService.getGroups();
+                if (groups && groups.length > 0) {
+                    currentGroupsList = groups;
+                    renderGroupCards(groups);
+                }
+
                 const remoteProjects = await window.ETUDataService.getAllProjects();
                 if (remoteProjects && remoteProjects.length > initialProjectsData.length) {
                     allProjectsList = remoteProjects;
                     filterCategory(initialCategory);
+                    if (currentGroupsList.length > 0) {
+                        renderGroupCards(currentGroupsList);
+                    }
                 }
             } catch (e) {
-                // Keep local data intact
+                console.warn('Could not enhance groups data:', e);
             }
         }
         document.addEventListener('DOMContentLoaded', fetchRemoteEnhancements);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAddGroupModal();
+            }
+        });
     </script>
     <script src="nav.js"></script>
 </body>
