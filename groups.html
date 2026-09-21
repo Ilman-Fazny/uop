@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse Student Groups | English Teaching Unit - UoP</title>
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -63,9 +66,25 @@
                 <a href="index.html" class="text-slate-300 hover:text-white transition">Home</a>
                 <a href="groups.html" class="bg-navy-800 text-accent-gold px-4 py-2 rounded-md font-medium">Groups</a>
                 <a href="categories.html" class="text-slate-300 hover:text-white transition">Categories</a>
-                <a href="#gallery" class="text-slate-300 hover:text-white transition">Gallery</a>
+                <a href="#projects-grid" class="text-slate-300 hover:text-white transition">Gallery</a>
                 <a href="about.html" class="text-slate-300 hover:text-white transition">About</a>
             </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-950 px-6 py-4 border-t border-navy-800 space-y-3">
+            <a href="index.html" class="block text-slate-300 hover:text-white py-1">Home</a>
+            <a href="groups.html" class="block text-accent-gold font-medium py-1">Groups</a>
+            <a href="categories.html" class="block text-slate-300 hover:text-white py-1">Categories</a>
+            <a href="#projects-grid" class="block text-slate-300 hover:text-white py-1">Gallery</a>
+            <a href="about.html" class="block text-slate-300 hover:text-white py-1">About</a>
         </div>
     </header>
 
@@ -88,60 +107,60 @@
             <!-- 4 Column Cohort Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Group AB01 Card -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab01" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Group AB01" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Group AB01" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB01</span>
-                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">12 projects</span>
+                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">4 projects</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-base mb-1">Group AB01</h3>
+                        <h3 class="font-bold text-navy-900 text-base mb-1 group-hover:text-accent-gold transition">Group AB01</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Pioneers in collaborative storytelling and visual media.</p>
-                        <a href="groupab01.html" class="text-xs font-semibold text-accent-gold hover:underline">View projects →</a>
+                        <span class="text-xs font-semibold text-accent-gold group-hover:underline">View projects →</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Group AB02 Card -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab02" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80" alt="Group AB02" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80" alt="Group AB02" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB02</span>
-                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">9 projects</span>
+                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">4 projects</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-base mb-1">Group AB02</h3>
+                        <h3 class="font-bold text-navy-900 text-base mb-1 group-hover:text-accent-gold transition">Group AB02</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Exploring documentary arts and engineering narratives.</p>
-                        <a href="#" class="text-xs font-semibold text-accent-gold hover:underline">View projects →</a>
+                        <span class="text-xs font-semibold text-accent-gold group-hover:underline">View projects →</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Group AB03 Card -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab03" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="Group AB03" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="Group AB03" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB03</span>
-                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">14 projects</span>
+                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">4 projects</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-base mb-1">Group AB03</h3>
+                        <h3 class="font-bold text-navy-900 text-base mb-1 group-hover:text-accent-gold transition">Group AB03</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Creative presentations bridging language and technology.</p>
-                        <a href="#" class="text-xs font-semibold text-accent-gold hover:underline">View projects →</a>
+                        <span class="text-xs font-semibold text-accent-gold group-hover:underline">View projects →</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Group AB04 Card -->
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                <a href="group.html?group=ab04" class="group block bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
                     <div class="relative h-44">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Group AB04" class="w-full h-full object-cover">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Group AB04" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <span class="absolute top-3 left-3 bg-accent-gold text-navy-900 text-xs font-bold px-2.5 py-1 rounded">AB04</span>
-                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">11 projects</span>
+                        <span class="absolute bottom-3 right-3 bg-navy-950/80 text-white text-xs px-2 py-0.5 rounded backdrop-blur-sm">4 projects</span>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-bold text-navy-900 text-base mb-1">Group AB04</h3>
+                        <h3 class="font-bold text-navy-900 text-base mb-1 group-hover:text-accent-gold transition">Group AB04</h3>
                         <p class="text-xs text-slate-500 mb-4 line-clamp-2">Artistic expression through multimedia and gallery work.</p>
-                        <a href="#" class="text-xs font-semibold text-accent-gold hover:underline">View projects →</a>
+                        <span class="text-xs font-semibold text-accent-gold group-hover:underline">View projects →</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -156,29 +175,119 @@
                 <button onclick="filterCategory('all')" id="tab-all" class="filter-tab bg-navy-900 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm transition">
                     All Categories
                 </button>
-                <button onclick="filterCategory('Group Activities')" id="tab-Group Activities" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
-                    <span>🧩</span> Group Activities
+                <button onclick="filterCategory('Group Activities')" id="tab-group-activities" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
+                    <span>🎭</span> Group Activities
                 </button>
-                <button onclick="filterCategory('Presentations')" id="tab-Presentations" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
+                <button onclick="filterCategory('Presentations')" id="tab-presentations" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
                     <span>📊</span> Presentations
                 </button>
-                <button onclick="filterCategory('Documentaries')" id="tab-Documentaries" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
-                    <span>📹</span> Documentaries
+                <button onclick="filterCategory('Documentaries')" id="tab-documentaries" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
+                    <span>🎬</span> Documentaries
                 </button>
-                <button onclick="filterCategory('Art & Explorer')" id="tab-Art & Explorer" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
+                <button onclick="filterCategory('Art & Explorer')" id="tab-art-explorer" class="filter-tab bg-slate-200/80 hover:bg-slate-200 text-slate-700 text-xs font-medium px-4 py-2 rounded-full transition flex items-center gap-1.5">
                     <span>🎨</span> Art & Explorer
                 </button>
             </div>
 
             <!-- Meta Header Bar -->
             <div class="flex items-center justify-between mb-6">
-                <div id="counter-text" class="text-xs font-semibold text-slate-500">23 projects</div>
+                <div id="counter-text" class="text-xs font-semibold text-slate-500">16 projects</div>
                 <button onclick="filterCategory('all')" id="clear-btn" class="hidden text-xs text-slate-400 hover:text-slate-600 transition">Clear all</button>
             </div>
 
             <!-- 4-Column Project Card Grid -->
             <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Javascript will inject projects here -->
+                <!-- Group Activities -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80" alt="Engineering Language Fair 2024" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 flex gap-1">
+                                <a href="group.html?group=ab01" class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow hover:bg-white transition">AB01</a>
+                                <span class="bg-navy-900 text-white text-[10px] px-1.5 py-0.5 rounded shadow">🎭</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1 block">Group Activities</span>
+                            <h4 class="font-bold text-navy-900 text-sm mb-2 leading-snug">Engineering Language Fair 2024</h4>
+                            <p class="text-xs text-slate-500 mb-3 line-clamp-3 leading-relaxed">A vibrant group activity showcasing language skills through engineering themes and interactive stalls.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-slate-50 flex items-center justify-between">
+                        <a href="group.html?group=ab01" class="text-xs font-bold text-accent-gold flex items-center hover:underline">View in AB01 →</a>
+                    </div>
+                </div>
+
+                <!-- Presentations -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80" alt="Structural Integrity: An Oral Report" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 flex gap-1">
+                                <a href="group.html?group=ab01" class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow hover:bg-white transition">AB01</a>
+                                <span class="bg-navy-900 text-white text-[10px] px-1.5 py-0.5 rounded shadow">📊</span>
+                            </div>
+                            <span class="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded font-mono">08:20</span>
+                            <button class="absolute inset-0 m-auto w-10 h-10 bg-accent-gold/90 text-navy-900 rounded-full flex items-center justify-center pl-0.5 shadow">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1 block">Presentations</span>
+                            <h4 class="font-bold text-navy-900 text-sm mb-2 leading-snug">Structural Integrity: An Oral Report</h4>
+                            <p class="text-xs text-slate-500 mb-3 line-clamp-3 leading-relaxed">Students present findings on building materials and structural analysis in formal English.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-slate-50 flex items-center justify-between">
+                        <a href="group.html?group=ab01" class="text-xs font-bold text-accent-gold flex items-center hover:underline">View in AB01 →</a>
+                    </div>
+                </div>
+
+                <!-- Documentaries -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80" alt="Campus Life: An Engineer's Story" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 flex gap-1">
+                                <a href="group.html?group=ab01" class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow hover:bg-white transition">AB01</a>
+                                <span class="bg-navy-900 text-white text-[10px] px-1.5 py-0.5 rounded shadow">🎬</span>
+                            </div>
+                            <span class="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded font-mono">15:02</span>
+                            <button class="absolute inset-0 m-auto w-10 h-10 bg-accent-gold/90 text-navy-900 rounded-full flex items-center justify-center pl-0.5 shadow">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1 block">Documentaries</span>
+                            <h4 class="font-bold text-navy-900 text-sm mb-2 leading-snug">Campus Life: An Engineer's Story</h4>
+                            <p class="text-xs text-slate-500 mb-3 line-clamp-3 leading-relaxed">A short documentary exploring the daily life of an engineering student at Peradeniya.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-slate-50 flex items-center justify-between">
+                        <a href="group.html?group=ab01" class="text-xs font-bold text-accent-gold flex items-center hover:underline">View in AB01 →</a>
+                    </div>
+                </div>
+
+                <!-- Art & Explorer -->
+                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" alt="Structures & Strokes" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 flex gap-1">
+                                <a href="group.html?group=ab01" class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow hover:bg-white transition">AB01</a>
+                                <span class="bg-navy-900 text-white text-[10px] px-1.5 py-0.5 rounded shadow">🎨</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1 block">Art & Explorer</span>
+                            <h4 class="font-bold text-navy-900 text-sm mb-2 leading-snug">Structures & Strokes</h4>
+                            <p class="text-xs text-slate-500 mb-3 line-clamp-3 leading-relaxed">An art series inspired by civil engineering blueprints and the natural forms of the Peradeniya campus.</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0 border-t border-slate-50 flex items-center justify-between">
+                        <a href="group.html?group=ab01" class="text-xs font-bold text-accent-gold flex items-center hover:underline">View in AB01 →</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -199,23 +308,26 @@
                 </p>
             </div>
 
+            <!-- Col 2: Navigation Links -->
             <div>
                 <h4 class="font-bold text-sm text-slate-200 mb-4">Pages</h4>
                 <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#home" class="hover:text-accent-gold">Home</a></li>
-                    <li><a href="#groups" class="hover:text-accent-gold">Groups</a></li>
-                    <li><a href="#categories" class="hover:text-accent-gold">Categories</a></li>
-                    <li><a href="#gallery" class="hover:text-accent-gold">Gallery</a></li>
+                    <li><a href="index.html" class="hover:text-accent-gold">Home</a></li>
+                    <li><a href="groups.html" class="hover:text-accent-gold">Groups</a></li>
+                    <li><a href="categories.html" class="hover:text-accent-gold">Categories</a></li>
+                    <li><a href="#projects-grid" class="hover:text-accent-gold">Gallery</a></li>
+                    <li><a href="about.html" class="hover:text-accent-gold">About</a></li>
                 </ul>
             </div>
 
+            <!-- Col 3: Student Groups Links -->
             <div>
                 <h4 class="font-bold text-sm text-slate-200 mb-4">Student Groups</h4>
                 <ul class="space-y-2 text-xs text-slate-400">
-                    <li><a href="#" class="hover:text-accent-gold">Group AB01</a></li>
-                    <li><a href="#" class="hover:text-accent-gold">Group AB02</a></li>
-                    <li><a href="#" class="hover:text-accent-gold">Group AB03</a></li>
-                    <li><a href="#" class="hover:text-accent-gold">Group AB04</a></li>
+                    <li><a href="group.html?group=ab01" class="hover:text-accent-gold">Group AB01</a></li>
+                    <li><a href="group.html?group=ab02" class="hover:text-accent-gold">Group AB02</a></li>
+                    <li><a href="group.html?group=ab03" class="hover:text-accent-gold">Group AB03</a></li>
+                    <li><a href="group.html?group=ab04" class="hover:text-accent-gold">Group AB04</a></li>
                 </ul>
             </div>
         </div>
@@ -227,67 +339,79 @@
 
     <!-- DYNAMIC FILTERING & PROJECT DATA SCRIPT -->
     <script>
-        const projectsData = [
-            // Group Activities
-            { group: 'AB01', category: 'Group Activities', icon: '🧩', title: 'Engineering Language Fair 2024', desc: 'A vibrant group activity showcasing language skills through engineering themes and interactive stalls.', img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80' },
-         //   { group: 'AB01', category: 'Group Activities', icon: '🧩', title: 'Inter-Group English Quiz Bowl', desc: 'Competitive quiz event testing engineering vocabulary and general English proficiency.', img: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80' },
-        //    { group: 'AB02', category: 'Group Activities', icon: '🧩', title: 'Team Debate Championship', desc: 'Inter-group English debate on the topic: Technology and its impact on society.', img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80' },
-     //       { group: 'AB02', category: 'Group Activities', icon: '🧩', title: 'Storytelling Circle Workshop', desc: 'Students share personal engineering stories in a supportive oral storytelling format.', img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80' },
-          //  { group: 'AB03', category: 'Group Activities', icon: '🧩', title: 'Interactive Technical Drama', desc: 'A short theatrical performance on safety standards written and staged in English.', img: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80' },
-          //  { group: 'AB04', category: 'Group Activities', icon: '🧩', title: 'Language & Design Sprint', desc: 'Fast-paced collaborative workshop combining product design presentations and critical feedback.', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80' },
-         //  { group: 'AB04', category: 'Group Activities', icon: '🧩', title: 'Inter-Group Speech Contest', desc: 'Public speaking competition focusing on persuasive technical communication.', img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80' },
+        const initialProjectsData = [
+            // AB01 Projects
+            { group: 'AB01', groupSlug: 'ab01', category: 'Group Activities', filterCategory: 'group-activities', icon: '🎭', title: 'Engineering Language Fair 2024', desc: 'A vibrant group activity showcasing language skills through engineering themes and interactive stalls.', img: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80', isVideo: false },
+            { group: 'AB01', groupSlug: 'ab01', category: 'Presentations', filterCategory: 'presentations', icon: '📊', title: 'Structural Integrity: An Oral Report', desc: 'Students present findings on building materials and structural analysis in formal English.', img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '08:20' },
+            { group: 'AB01', groupSlug: 'ab01', category: 'Documentaries', filterCategory: 'documentaries', icon: '🎬', title: "Campus Life: An Engineer's Story", desc: 'A short documentary exploring the daily life of an engineering student at Peradeniya.', img: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '15:02' },
+            { group: 'AB01', groupSlug: 'ab01', category: 'Art & Explorer', filterCategory: 'art-explorer', icon: '🎨', title: 'Structures & Strokes', desc: 'An art series inspired by civil engineering blueprints and the natural forms of the Peradeniya campus.', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80', isVideo: false },
 
-            // Presentations
-            { group: 'AB01', category: 'Presentations', icon: '📊', title: 'Bridging Science and Communication', desc: 'A multimedia presentation on the intersection of engineering and English literacy.', img: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '12:34' },
-         //   { group: 'AB01', category: 'Presentations', icon: '📊', title: 'Structural Integrity: An Oral Report', desc: 'Students present findings on building materials and structural analysis in formal English.', img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '08:20' },
-         //   { group: 'AB02', category: 'Presentations', icon: '📊', title: 'Renewable Energy: Speaking Up', desc: 'Group AB02 presents their research on sustainable engineering and solar solutions in Sri Lanka.', img: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '10:45' },
-        //    { group: 'AB03', category: 'Presentations', icon: '📊', title: 'AI and the Future of Communication', desc: 'A forward-looking presentation on artificial intelligence in language learning and engineering.', img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '14:12' },
-        //    { group: 'AB04', category: 'Presentations', icon: '📊', title: 'Infrastructure Development Talk', desc: 'A presentation examining bridge construction techniques and urban planning.', img: 'https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '09:15' },
+            // AB02 Projects
+            { group: 'AB02', groupSlug: 'ab02', category: 'Group Activities', filterCategory: 'group-activities', icon: '🎭', title: 'Inter-Group Debate: Technology & Society', desc: 'A structured Oxford-style debate challenging the ethical limits of automated engineering systems.', img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80', isVideo: false },
+            { group: 'AB02', groupSlug: 'ab02', category: 'Presentations', filterCategory: 'presentations', icon: '📊', title: 'Renewable Energy: Speaking Up', desc: 'Group AB02 presents their investigative study on decentralized solar grids across Central Province.', img: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '10:45' },
+            { group: 'AB02', groupSlug: 'ab02', category: 'Documentaries', filterCategory: 'documentaries', icon: '🎬', title: 'The Making of an Engineer', desc: 'Following three undergraduates across their workshop practicums, exam weeks, and cultural festivals.', img: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '18:30' },
+            { group: 'AB02', groupSlug: 'ab02', category: 'Art & Explorer', filterCategory: 'art-explorer', icon: '🎨', title: 'Circuit Paintings & Ink', desc: 'Mixed-media fine art combining printed circuit board traces with traditional Sri Lankan motifs.', img: 'https://images.unsplash.com/photo-1501084291732-13b1ba830e22?auto=format&fit=crop&w=600&q=80', isVideo: false },
 
-            // Documentaries
-            { group: 'AB01', category: 'Documentaries', icon: '📹', title: "Campus Life: An Engineer's Story", desc: 'A short documentary exploring the daily life of an engineering student at Peradeniya.', img: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '15:02' },
-       //     { group: 'AB02', category: 'Documentaries', icon: '📹', title: 'The Making of an Engineer', desc: 'Following three students through their first-year engineering journey at Peradeniya.', img: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '18:30' },
-        //    { group: 'AB03', category: 'Documentaries', icon: '📹', title: 'Peradeniya Through Our Eyes', desc: 'A documentary capturing the beauty, culture, and academic life of the University of Peradeniya.', img: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '20:05' },
-      //      { group: 'AB03', category: 'Documentaries', icon: '📹', title: 'Engineering the Future', desc: 'Students interview faculty about the future of engineering education in Sri Lanka.', img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '11:48' },
-       //     { group: 'AB04', category: 'Documentaries', icon: '📹', title: 'Voices of Innovation', desc: 'Documenting student prototype developments and teamwork in workshops.', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '13:40' },
+            // AB03 Projects
+            { group: 'AB03', groupSlug: 'ab03', category: 'Group Activities', filterCategory: 'group-activities', icon: '🎭', title: 'Interactive Technical Drama', desc: 'A theatrical performance highlighting workshop safety protocols written and acted in English.', img: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80', isVideo: false },
+            { group: 'AB03', groupSlug: 'ab03', category: 'Presentations', filterCategory: 'presentations', icon: '📊', title: 'AI and the Future of Communication', desc: 'A visionary presentation analyzing how generative language tools assist bilingual students.', img: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '14:12' },
+            { group: 'AB03', groupSlug: 'ab03', category: 'Documentaries', filterCategory: 'documentaries', icon: '🎬', title: 'Peradeniya Through Our Eyes', desc: 'A cinematic documentary highlighting the architectural marvel of Akbar Bridge.', img: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '20:05' },
+            { group: 'AB03', groupSlug: 'ab03', category: 'Art & Explorer', filterCategory: 'art-explorer', icon: '🎨', title: 'Language in Motion', desc: 'A typographic poster series exploring how linguistic metaphors guide problem solving.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80', isVideo: false },
 
-            // Art & Explorer
-            { group: 'AB01', category: 'Art & Explorer', icon: '🎨', title: 'Structures & Strokes', desc: 'An art series inspired by civil engineering blueprints and the natural forms of the Peradeniya campus.', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80' },
-      //      { group: 'AB01', category: 'Art & Explorer', icon: '🎨', title: 'Blueprint Watercolours', desc: 'Watercolour paintings inspired by engineering schematic drawings and technical diagrams.', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80' },
-     //       { group: 'AB02', category: 'Art & Explorer', icon: '🎨', title: 'Circuit Paintings', desc: 'Mixed media artwork merging electronic circuit diagrams with watercolour and ink.', img: 'https://images.unsplash.com/photo-1501084291732-13b1ba830e22?auto=format&fit=crop&w=600&q=80' },
-    //        { group: 'AB03', category: 'Art & Explorer', icon: '🎨', title: 'Language in Motion', desc: 'Digital art series exploring how words and symbols shape engineering thinking and communication.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80' },
-     //       { group: 'AB04', category: 'Art & Explorer', icon: '🎨', title: 'Botanical Tech Sketches', desc: 'Pen-and-ink illustrations exploring native campus flora alongside mechanical components.', img: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80' },
-       //     { group: 'AB04', category: 'Art & Explorer', icon: '🎨', title: 'Abstract Engineering', desc: 'Vibrant geometric abstractions representing fluid dynamics and mechanical forces.', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80' }
+            // AB04 Projects
+            { group: 'AB04', groupSlug: 'ab04', category: 'Group Activities', filterCategory: 'group-activities', icon: '🎭', title: 'Language & Design Sprint', desc: 'A high-intensity sprint pitching sustainable consumer products under tight constraints.', img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80', isVideo: false },
+            { group: 'AB04', groupSlug: 'ab04', category: 'Presentations', filterCategory: 'presentations', icon: '📊', title: 'Infrastructure Development Talk', desc: 'Examining bridge construction techniques, seismic resilience, and urban transit planning.', img: 'https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '09:15' },
+            { group: 'AB04', groupSlug: 'ab04', category: 'Documentaries', filterCategory: 'documentaries', icon: '🎬', title: 'Voices of Innovation', desc: 'Documenting engineering prototype fabrication and student teamwork in university labs.', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80', isVideo: true, time: '13:40' },
+            { group: 'AB04', groupSlug: 'ab04', category: 'Art & Explorer', filterCategory: 'art-explorer', icon: '🎨', title: 'Botanical Tech Sketches', desc: 'Botanical drawings of campus trees intertwined with precision mechanical gears.', img: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80', isVideo: false }
         ];
+
+        let allProjectsList = [...initialProjectsData];
 
         function renderProjects(filtered) {
             const grid = document.getElementById('projects-grid');
-            grid.innerHTML = filtered.map(item => `
-                <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="relative h-44">
-                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
-                        <div class="absolute top-3 left-3 flex gap-1">
-                            <span class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded">${item.group}</span>
-                            <span class="bg-navy-900 text-white text-[10px] px-1.5 py-0.5 rounded">${item.icon}</span>
+            if (!grid) return;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400">No projects found in this category.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                const groupBadge = item.groupSlug ? item.groupSlug.toUpperCase() : (item.group || 'AB');
+                const groupSlug = item.groupSlug || (item.group ? item.group.toLowerCase() : 'ab01');
+                const icon = item.icon || '📌';
+                const imageSrc = item.imageUrl || item.img || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80';
+
+                return `
+                    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-44">
+                                <img src="${imageSrc}" alt="${item.title}" class="w-full h-full object-cover">
+                                <div class="absolute top-3 left-3 flex gap-1">
+                                    <a href="group.html?group=${groupSlug}" class="bg-accent-gold text-navy-900 text-[10px] font-bold px-2 py-0.5 rounded shadow hover:bg-white transition">${groupBadge}</a>
+                                    <span class="bg-navy-900 text-white text-[10px] px-1.5 py-0.5 rounded shadow">${icon}</span>
+                                </div>
+                                ${item.time ? `<span class="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded font-mono">${item.time}</span>` : ''}
+                                ${item.isVideo ? `
+                                    <button class="absolute inset-0 m-auto w-10 h-10 bg-accent-gold/90 text-navy-900 rounded-full flex items-center justify-center pl-0.5 shadow">
+                                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </button>
+                                ` : ''}
+                            </div>
+                            <div class="p-5">
+                                <span class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1 block">${item.category}</span>
+                                <h4 class="font-bold text-navy-900 text-sm mb-2 leading-snug">${item.title}</h4>
+                                <p class="text-xs text-slate-500 mb-3 line-clamp-3 leading-relaxed">${item.description || item.desc || ''}</p>
+                            </div>
                         </div>
-                        ${item.isVideo ? `
-                            <button class="absolute inset-0 m-auto w-10 h-10 bg-accent-gold/90 text-navy-900 rounded-full flex items-center justify-center pl-0.5 shadow">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                            <span class="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded">${item.time}</span>
-                        ` : ''}
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-bold text-navy-900 text-sm mb-2 leading-snug">${item.title}</h4>
-                        <p class="text-xs text-slate-500 ${item.isVideo ? 'mb-3 line-clamp-2' : 'line-clamp-3'}">${item.desc}</p>
-                        ${item.isVideo ? `
-                            <a href="#" class="text-xs font-bold text-accent-gold flex items-center hover:underline">
-                                <svg class="w-3.5 h-3.5 fill-current mr-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Watch video
+                        <div class="p-5 pt-0 border-t border-slate-50 flex items-center justify-between">
+                            <a href="group.html?group=${groupSlug}" class="text-xs font-bold text-accent-gold flex items-center hover:underline">
+                                View in ${groupBadge} →
                             </a>
-                        ` : ''}
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function filterCategory(cat) {
@@ -300,35 +424,51 @@
             });
 
             let filtered = [];
-            if (cat === 'all') {
-                document.getElementById('tab-all').className = "filter-tab bg-navy-900 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm transition";
-                filtered = projectsData;
-                counterText.innerText = `${projectsData.length} projects`;
-                clearBtn.classList.add('hidden');
+            if (cat === 'all' || !cat) {
+                const allTab = document.getElementById('tab-all');
+                if (allTab) allTab.className = "filter-tab bg-navy-900 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm transition";
+                filtered = allProjectsList;
+                if (counterText) counterText.innerText = `${allProjectsList.length} projects`;
+                if (clearBtn) clearBtn.classList.add('hidden');
             } else {
-                const activeTab = document.getElementById(`tab-${cat}`);
+                // Support both exact name ("Group Activities") or slug ("group-activities")
+                const slugified = cat.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+                const activeTab = document.getElementById(`tab-${slugified}`) || document.getElementById(`tab-${cat}`);
                 if (activeTab) {
                     activeTab.className = "filter-tab bg-navy-900 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm transition flex items-center gap-1.5";
                 }
-                filtered = projectsData.filter(p => p.category === cat);
-                counterText.innerText = `${filtered.length} projects · ${cat}`;
-                clearBtn.classList.remove('hidden');
+                filtered = allProjectsList.filter(p => {
+                    const matchName = p.category && p.category.toLowerCase() === cat.toLowerCase();
+                    const matchSlug = p.filterCategory && p.filterCategory.toLowerCase() === cat.toLowerCase();
+                    return matchName || matchSlug;
+                });
+                if (counterText) counterText.innerText = `${filtered.length} project${filtered.length !== 1 ? 's' : ''} · ${cat}`;
+                if (clearBtn) clearBtn.classList.remove('hidden');
             }
 
             renderProjects(filtered);
         }
 
-        // Initial rendering on page load
-        renderProjects(projectsData);
-        
-        // Replace these with your actual Supabase credentials from Phase 3
-      //  const SUPABASE_URL = 'https://dbfnjoejntbxdnzixpls.supabase.co/rest/v1/';
-      //  const SUPABASE_ANON_KEY = 'sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk';
-        
-        // Initialize the client
-      //  const supabase = window.supabase.createClient(https://dbfnjoejntbxdnzixpls.supabase.co/rest/v1/, sb_publishable_YjlyCxHROS4bddkt0T7A1A_PqkjBQEk);
+        // Render synchronously immediately so the page is never blank
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialCategory = urlParams.get('category') || 'all';
+        filterCategory(initialCategory);
 
-        
+        // In the background, enhance with remote Supabase data if available
+        async function fetchRemoteEnhancements() {
+            if (!window.ETUDataService) return;
+            try {
+                const remoteProjects = await window.ETUDataService.getAllProjects();
+                if (remoteProjects && remoteProjects.length > initialProjectsData.length) {
+                    allProjectsList = remoteProjects;
+                    filterCategory(initialCategory);
+                }
+            } catch (e) {
+                // Keep local data intact
+            }
+        }
+        document.addEventListener('DOMContentLoaded', fetchRemoteEnhancements);
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
