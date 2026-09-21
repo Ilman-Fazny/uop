@@ -330,12 +330,33 @@ window.ETUDataService = {
     const fallbackGroup = FALLBACK_DATA.groups.find(g => g.slug.toLowerCase() === cleanSlug) || FALLBACK_DATA.groups[0];
     const groupProjects = await this.getProjectsByGroup(group.slug);
 
+    let students = fallbackGroup.students || [];
+    if (supabase && group.id) {
+      try {
+        const { data: memberRows, error: memberErr } = await supabase
+          .from('members')
+          .select('*')
+          .eq('group_id', group.id);
+
+        if (!memberErr && memberRows && memberRows.length > 0) {
+          students = memberRows.map(m => ({
+            regNo: m.reg_no || 'E/25/---',
+            name: m.name,
+            committee: m.committee || 'Committee responsibilities',
+            role: m.role || 'Student'
+          }));
+        }
+      } catch (e) {
+        console.warn('Falling back to local students:', e);
+      }
+    }
+
     return {
       group: {
         ...fallbackGroup,
         ...group
       },
-      students: fallbackGroup.students || [],
+      students,
       projects: groupProjects
     };
   },
@@ -356,7 +377,9 @@ window.ETUDataService = {
               ...p,
               groupSlug: p.groups.slug,
               groupName: p.groups.name,
-              imageUrl: p.image_url || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'
+              filterCategory: (p.category || '').toLowerCase().replace(/[^a-z0-9]/g, '-'),
+              youtubeUrl: p.youtube_url || p.youtubeUrl || null,
+              imageUrl: p.file_url || p.image_url || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'
             }));
           }
         }
@@ -380,7 +403,9 @@ window.ETUDataService = {
             ...p,
             groupSlug: p.groups ? p.groups.slug : 'ab01',
             groupName: p.groups ? p.groups.name : 'Group',
-            imageUrl: p.image_url || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'
+            filterCategory: (p.category || '').toLowerCase().replace(/[^a-z0-9]/g, '-'),
+            youtubeUrl: p.youtube_url || p.youtubeUrl || null,
+            imageUrl: p.file_url || p.image_url || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'
           }));
         }
       } catch (e) {
